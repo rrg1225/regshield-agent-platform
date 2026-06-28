@@ -6,3 +6,4 @@ coverage/
 npm-debug.log*
 traces/*.json
 !.gitkeep
+.local-logs/
