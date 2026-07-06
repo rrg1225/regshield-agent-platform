@@ -57,7 +57,7 @@ export function createApp(options = {}) {
   const distPath = path.join(process.cwd(), "dist");
   if (fs.existsSync(distPath)) {
     app.use(express.static(distPath));
-    app.get("*", (_req, res) => res.sendFile(path.join(distPath, "index.html")));
+    app.get(/.*/, (_req, res) => res.sendFile(path.join(distPath, "index.html")));
   }
 
   app.use((error, _req, res, _next) => {

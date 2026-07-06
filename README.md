@@ -35,8 +35,10 @@ Open `http://localhost:5173`. The API defaults to `http://localhost:4740`.
 ```bash
 npm test          # API contracts plus scenario evals
 npm run eval      # deterministic agent scenario suite
+npm run health    # repository completeness checks
+npm run ops:check # operational readiness checks
 npm run build     # production React bundle
-npm run ci:local  # health checks, tests, evals, and build
+npm run ci:local  # health, ops checks, tests, evals, and build
 npm run start     # serve API and built frontend
 ```
 

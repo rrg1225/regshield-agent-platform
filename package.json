@@ -14,7 +14,8 @@
     "eval": "node eval/scenarios.test.js",
     "build": "vite build",
     "health": "node scripts/project-health.js",
-    "ci:local": "npm run health && npm test && npm run build"
+    "ci:local": "npm run health && npm run ops:check && npm test && npm run build",
+    "ops:check": "node scripts/ops-check.js"
   },
   "keywords": [
     "ai-agent",
@@ -29,13 +30,13 @@
     "fullstack"
   ],
   "dependencies": {
-    "@vitejs/plugin-react": "^4.7.0",
-    "concurrently": "^9.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
+    "concurrently": "^10.0.3",
     "cors": "^2.8.5",
-    "express": "^4.22.2",
+    "express": "^5.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "vite": "^6.4.3"
+    "vite": "^8.1.3"
   },
   "engines": {
     "node": ">=20"
