@@ -102,6 +102,21 @@ export function draftImplementationPlan(evidence, controls, approval) {
   return {
     mode: "draft-only",
     tasks,
+    operatingModel: {
+      raci: controls.slice(0, 4).map((control) => ({
+        controlId: control.id,
+        responsible: control.owner,
+        accountable: approval.requiresApproval ? approval.approvers[0] : control.owner,
+        consulted: ["Legal", "Risk", "Product"].filter((owner) => owner !== control.owner),
+        informed: ["Audit"]
+      })),
+      changeCalendar: tasks.slice(0, 5).map((task) => ({
+        taskId: task.id,
+        dueInDays: task.dueInDays,
+        gate: task.type === "control-gap" ? "control validation" : "obligation evidence"
+      })),
+      successMetrics: ["all obligations mapped", "control owners assigned", "approval route captured", "no external write performed"]
+    },
     nextReview: approval.requiresApproval ? "Schedule approval review before implementation." : "Review draft with control owners.",
     implementationBlocked: approval.requiresApproval
   };

@@ -48,6 +48,8 @@ test("run endpoint returns cited impact analysis and persists a trace", async ()
     assert.equal(body.run.status, "approval_required");
     assert.ok(body.run.evidence.some((item) => item.id === "reg-ai-001"));
     assert.ok(body.run.plan.tasks.length > 0);
+    assert.ok(body.run.plan.operatingModel.raci.length > 0);
+    assert.ok(body.run.plan.operatingModel.successMetrics.includes("approval route captured"));
     assert.equal(fs.readdirSync(traceDir).filter((file) => file.endsWith(".json")).length, 1);
   });
 });
