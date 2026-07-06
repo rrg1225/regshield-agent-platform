@@ -50,6 +50,7 @@ test("run endpoint returns cited impact analysis and persists a trace", async ()
     assert.ok(body.run.plan.tasks.length > 0);
     assert.ok(body.run.plan.operatingModel.raci.length > 0);
     assert.ok(body.run.plan.operatingModel.successMetrics.includes("approval route captured"));
+    assert.ok(body.run.plan.operatingModel.monitoring.evidenceArtifacts.includes("control test evidence"));
     assert.equal(fs.readdirSync(traceDir).filter((file) => file.endsWith(".json")).length, 1);
   });
 });

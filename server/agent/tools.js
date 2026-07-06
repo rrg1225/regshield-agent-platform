@@ -115,7 +115,12 @@ export function draftImplementationPlan(evidence, controls, approval) {
         dueInDays: task.dueInDays,
         gate: task.type === "control-gap" ? "control validation" : "obligation evidence"
       })),
-      successMetrics: ["all obligations mapped", "control owners assigned", "approval route captured", "no external write performed"]
+      successMetrics: ["all obligations mapped", "control owners assigned", "approval route captured", "no external write performed"],
+      monitoring: {
+        cadence: approval.requiresApproval ? "weekly until approval clears" : "biweekly until implementation closes",
+        evidenceArtifacts: ["control test evidence", "owner sign-off", "policy mapping", "deadline exception log"],
+        escalationTrigger: "Any overdue effective date, missing owner, or failed control test"
+      }
     },
     nextReview: approval.requiresApproval ? "Schedule approval review before implementation." : "Review draft with control owners.",
     implementationBlocked: approval.requiresApproval
